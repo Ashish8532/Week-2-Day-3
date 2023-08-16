@@ -1,0 +1,48 @@
+﻿@using Practical.ViewModels;
+@model ProductVM
+
+<form method="post" asp-action="Create" enctype="multipart/form-data">
+    <input hidden asp-for="Products.Id" />
+    <div class="row col-12">
+        <div class="border p-3 mt-4 row">
+            <div class="col-12 pb-2">
+                <h2 class="text-dark">Create Product</h2>
+            </div>
+            <hr />
+
+            <div class="mb-3">
+                <label asp-for="Products.Name"></label>
+                <input asp-for="Products.Name" class="form-control" />
+                <span asp-validation-for="Products.Name" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Products.Description"></label>
+                <textarea asp-for="Products.Description" class="form-control"></textarea>
+                <span asp-validation-for="Products.Description" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Products.Price"></label>
+                <input asp-for="Products.Price" class=" form-control" />
+                <span asp-validation-for="Products.Price" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Products.CategoryId">CategoryId</label>
+                <select asp-for="Products.CategoryId" asp-items="@Model.CategoryList" class="form-control">
+                    <option disabled selected>--Select Category--</option>
+                </select>
+                <span asp-validation-for="Products.CategoryId" class=" text-danger"></span>
+            </div>
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary" style="width:150px">Create</button>
+
+                <a asp-controller="Product" asp-action="Index" class="btn btn-secondary" style="width:150px">Back to List</a>
+            </div>
+        </div>
+    </div>
+
+</form>
+@section Scripts {
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}
